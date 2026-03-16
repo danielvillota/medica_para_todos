@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Django
+*.log
+db.sqlite3
+media/
+
+# Environment variables
+.env
+
+# VSCode
+.vscode/
+
+# Mac
+.DS_Store
+
+# migrations (opcional en algunos proyectos)
+# */migrations/*
+# !*/migrations/__init__.py
+
+# Static files
+staticfiles/
+
+# Pytest
+.pytest_cache/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Node (si usas React)
+node_modules/
+
+# build
+dist/
+build/
