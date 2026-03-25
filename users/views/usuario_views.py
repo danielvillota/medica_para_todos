@@ -1,10 +1,12 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 from users.serializers import UsuarioSerializer
 from users.models.usuario import User
 
 class UsuarioView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         serializer=UsuarioSerializer(data=request.data)
         if serializer.is_valid():
@@ -27,6 +29,7 @@ class UsuarioView(APIView):
         }, status=status.HTTP_200_OK)
 
 class UsuarioDetalleView(APIView):
+    permission_classes = [IsAuthenticated]
     def patch(self, request, id):
         try:
             usuario=User.objects.get(id=id)
