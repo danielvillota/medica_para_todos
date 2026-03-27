@@ -43,7 +43,7 @@ class UsuarioDetalleView(APIView):
             return Response({
                 "message":"Usuario actualizado",
                 "data":serializer.data
-            })
+            },status=status.HTTP_200_OK)
         return Response({
             "message":"Error validacion",
             "errors":serializer.errors

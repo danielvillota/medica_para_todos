@@ -1,0 +1,1 @@
+from .asesor_views import AsesorView, AsesorDetalleView
