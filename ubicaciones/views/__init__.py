@@ -1,0 +1,2 @@
+from .departamento_views import DepartamentoView
+from .municipio_views import MunicipioView
