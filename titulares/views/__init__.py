@@ -1,0 +1,1 @@
+from .titular_views import TitularView, TitularDetalleView
