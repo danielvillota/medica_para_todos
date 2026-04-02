@@ -1,0 +1,1 @@
+from .afiliacion_views import AfiliacionView, AfiliacionDetalleView
