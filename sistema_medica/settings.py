@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'afiliaciones',
     'titulares',
     'ubicaciones',
+    'beneficiarios',
 ]
 
 MIDDLEWARE = [
