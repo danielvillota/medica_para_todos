@@ -1,0 +1,1 @@
+from .beneficiario_serializers import BeneficiarioSerializer

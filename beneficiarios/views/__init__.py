@@ -1,0 +1,1 @@
+from .beneficiario_views import BeneficiarioView, BeneficiarioDetalleView
