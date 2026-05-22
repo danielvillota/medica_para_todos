@@ -7,7 +7,7 @@ from beneficiarios.serializers import BeneficiarioSerializer
 class BeneficiarioView(APIView):
     def post(self, request):
         serializer=BeneficiarioSerializer(data=request.data)
-        if serializer.is_valid:
+        if serializer.is_valid():
             serializer.save()
             return Response({
                 "message":"Beneficiario creado correctamente",
@@ -69,4 +69,13 @@ class BeneficiarioDetalleView(APIView):
         beneficiario.delete()
         return Response({
             "message":"Beneficiario eliminado exitosamente"
+        },status=status.HTTP_200_OK)
+
+class BeneficiarioTitularView(APIView):
+    def get(self, request, titular_id):
+        beneficiarios=Beneficiario.objects.filter(id_titular_id=titular_id)
+        serializer=BeneficiarioSerializer(beneficiarios, many=True)
+        return Response({
+            "message":"Lista de beneficiarios por titular",
+            "data":serializer.data
         },status=status.HTTP_200_OK)
