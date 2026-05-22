@@ -1,1 +1,1 @@
-from .beneficiario_views import BeneficiarioView, BeneficiarioDetalleView
+from .beneficiario_views import BeneficiarioView, BeneficiarioDetalleView, BeneficiarioTitularView
