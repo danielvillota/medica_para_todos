@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'titulares',
     'ubicaciones',
     'beneficiarios',
+    'aportes',
 ]
 
 MIDDLEWARE = [
