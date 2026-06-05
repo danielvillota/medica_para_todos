@@ -1,0 +1,1 @@
+from .papeleria_views import PapeleriaView, PapeleriaDetalleView

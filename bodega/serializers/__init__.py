@@ -1,0 +1,1 @@
+from .papeleria_serializers import PapeleriaSerializer
