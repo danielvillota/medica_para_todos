@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from beneficiarios.models import Beneficiario
 from beneficiarios.serializers import BeneficiarioSerializer
+from paginacion.paginacion import Paginacion
 
 class BeneficiarioView(APIView):
     def post(self, request):
@@ -19,12 +20,19 @@ class BeneficiarioView(APIView):
         },status=status.HTTP_400_BAD_REQUEST)
     
     def get(self, request):
-        beneficiarios=Beneficiario.objects.all()
-        serializer=BeneficiarioSerializer(beneficiarios, many=True)
-        return Response({
-            "message":"Lista de beneficiarios",
-            "data":serializer.data
-        },status=status.HTTP_200_OK)
+        nombre=request.query_params.get('nombre')
+        beneficiarios=Beneficiario.objects.select_related('id_titular').all()
+        if nombre:
+            beneficiarios=beneficiarios.filter(
+                nombre__icontains=nombre
+            )
+        paginador=Paginacion()
+        pagina=paginador.paginate_queryset(beneficiarios, request)
+        
+        serializer=BeneficiarioSerializer(pagina, many=True)
+        return paginador.get_paginated_response(
+            serializer.data
+        )
 
 class BeneficiarioDetalleView(APIView):
     def get(self, request, id):
