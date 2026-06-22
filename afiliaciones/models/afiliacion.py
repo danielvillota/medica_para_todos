@@ -8,3 +8,4 @@ class Afiliacion(models.Model):
     fecha_fin=models.DateField()
     is_active=models.BooleanField(default=True, db_index=True)
     id_titular=models.ForeignKey('titulares.titular', on_delete=models.PROTECT, related_name='afiliaciones', db_index=True)
+    id_asesor=models.ForeignKey('asesores.Asesor', on_delete=models.PROTECT, related_name='afiliaciones', db_index=True)
