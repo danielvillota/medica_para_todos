@@ -8,3 +8,8 @@ class BeneficiarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Beneficiario
         fields = '__all__'
+
+class BeneficiariosListaNombresSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Beneficiario
+        fields = ['nombre']

@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from afiliaciones.models import Afiliacion
-from afiliaciones.serializers import AfiliacionSerializer
+from afiliaciones.serializers import AfiliacionSerializer, AfiliacionCarnetSerializer
 from django.db.models import Q
 from paginacion.paginacion import Paginacion
 
@@ -97,4 +97,31 @@ class AfiliacionDetalleView(APIView):
         return Response({
             "message":"Afiliacion desactivada exitosamente"
         },status=status.HTTP_200_OK)
+
+class AfiliacionCarnetView(APIView):
+    def get(self, request, id):
+        try:
+            afiliacion = (
+                Afiliacion.objects
+                .select_related(
+                    'id_titular',
+                    'id_asesor'
+                )
+                .prefetch_related(
+                    'id_titular__beneficiarios'
+                )
+                .get(id=id)
+            )
+
+        except Afiliacion.DoesNotExist:
+            return Response({
+                "message": "No existe la afiliación"
+            }, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = AfiliacionCarnetSerializer(afiliacion)
+
+        return Response({
+            "message": "Datos de afiliacion",
+            "data": serializer.data
+        }, status=status.HTTP_200_OK)
         

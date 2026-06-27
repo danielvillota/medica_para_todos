@@ -1,1 +1,1 @@
-from .afiliacion_serializers import AfiliacionSerializer
+from .afiliacion_serializers import AfiliacionSerializer, AfiliacionCarnetSerializer
