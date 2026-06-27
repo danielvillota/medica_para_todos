@@ -1,1 +1,1 @@
-from .beneficiario_serializers import BeneficiarioSerializer
+from .beneficiario_serializers import BeneficiarioSerializer, BeneficiariosListaNombresSerializers
