@@ -1,1 +1,1 @@
-from .afiliacion_views import AfiliacionView, AfiliacionDetalleView, AfiliacionCarnetView
+from .afiliacion_views import AfiliacionView, AfiliacionDetalleView, AfiliacionCarnetView, AfiliacionReporteView, AfiliacionReportePDFView
