@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'beneficiarios',
     'aportes',
     'bodega',
+    'especialistas',
 ]
 
 MIDDLEWARE = [
