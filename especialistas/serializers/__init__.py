@@ -1,1 +1,1 @@
-from .especialista_serializers import EspecialistaSerializer
+from .especialista_serializers import EspecialistaSerializer, EspecialistaOrdenSerializer
