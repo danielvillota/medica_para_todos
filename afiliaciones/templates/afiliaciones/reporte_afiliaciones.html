@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <style>
+
+    body{
+        font-family: Arial;
+        font-size:10px;
+    }
+
+    table{
+        width:100%;
+        border-collapse:collapse;
+    }
+
+    th,td{
+        border:1px solid black;
+        padding:4px;
+    }
+
+    th{
+        background:#EAEAEA;
+    }
+
+    </style>
+
+</head>
+
+<body>
+
+<h2>Reporte de Afiliaciones</h2>
+
+<table>
+
+<tr>
+
+<th>Titular</th>
+
+<th>Celular</th>
+
+<th>Municipio</th>
+
+<th>Dirección</th>
+
+<th>Fecha Vencimiento</th>
+
+<th>Saldo</th>
+
+<th>Asesor</th>
+
+</tr>
+
+{% for afiliacion in afiliaciones %}
+
+<tr>
+
+<td>{{ afiliacion.nombre_titular }}</td>
+
+<td>{{ afiliacion.celular }}</td>
+
+<td>{{ afiliacion.municipio }}</td>
+
+<td>{{ afiliacion.direccion }}</td>
+
+<td>{{ afiliacion.fecha_fin }}</td>
+
+<td>{{ afiliacion.saldo }}</td>
+
+<td>{{ afiliacion.nombre_asesor }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+
+</html>

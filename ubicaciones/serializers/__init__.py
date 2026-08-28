@@ -1,0 +1,2 @@
+from .departamento_serializers import DepartamentoSerializer
+from .municipio_serializers import MunicipioSerializer
