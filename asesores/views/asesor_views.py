@@ -58,7 +58,7 @@ class AsesorDetalleView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response({
-                "mesage":"Asesor modificado exitosamente",
+                "message":"Asesor modificado exitosamente",
                 "data":serializer.data
             },status=status.HTTP_200_OK)
         return Response({
