@@ -2,10 +2,11 @@ from rest_framework import serializers
 from bodega.models import Papeleria
 
 class PapeleriaSerializer(serializers.ModelSerializer):
-
+    nombre_asesor=serializers.CharField(source='id_asesor.nombre', read_only=True)
     class Meta:
         model=Papeleria
         fields='__all__'
+        read_only_fields = ['id_usuario', 'id_usuario_updated']
     
     def validate(self, attrs):
 
