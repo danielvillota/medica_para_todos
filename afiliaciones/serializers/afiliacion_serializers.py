@@ -18,7 +18,23 @@ class AfiliacionSerializer(serializers.ModelSerializer):
         return value.quantize(Decimal('0.01'), rounding=ROUND_DOWN)
     
     def validate(self, attrs):
+        # Validar que el titular no tenga una afiliación activa
+        if not self.instance:
+            titular = attrs.get("id_titular")
 
+            afiliacion_activa = Afiliacion.objects.filter(
+                id_titular=titular,
+                is_active=True
+            ).exists()
+
+            if afiliacion_activa:
+                raise serializers.ValidationError({
+                    "titular": (
+                        "El titular ya tiene un contrato activo. "
+                        "Debe desactivar la afiliación o contrato anterior "
+                        "antes de crear uno nuevo."
+                    )
+                })
         if self.instance:
             contrato = attrs.get("contrato", self.instance.contrato)
             provisional = attrs.get("provisional", self.instance.provisional)

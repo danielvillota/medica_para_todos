@@ -19,6 +19,23 @@ class TitularView(APIView):
         },status=status.HTTP_400_BAD_REQUEST)
     
     def get(self, request):
+        cedula=request.query_params.get("cedula")
+        if cedula:
+            try:
+                titular = Titular.objects.get(cedula=cedula)
+            except Titular.DoesNotExist:
+                return Response({
+                    "message": "No existe un titular con esa cédula",
+                    "existe": False
+                }, status=status.HTTP_200_OK)
+
+            serializer = TitularSerializer(titular)
+
+            return Response({
+                "message": "Titular encontrado",
+                "existe": True,
+                "data": serializer.data
+            }, status=status.HTTP_200_OK)
         titulares=Titular.objects.all()
         serializer=TitularSerializer(titulares, many=True)
         return Response({
