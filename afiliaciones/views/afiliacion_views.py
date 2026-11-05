@@ -33,7 +33,7 @@ class AfiliacionView(APIView):
         provisional = request.query_params.get('provisional')
         nombre = request.query_params.get('nombre')
         cedula = request.query_params.get('cedula')
-        afiliaciones=Afiliacion.objects.select_related('id_titular').all()
+        afiliaciones=Afiliacion.objects.select_related('id_titular').filter(is_active=True).order_by('-id')
         if contrato:
             afiliaciones = afiliaciones.filter(
                 contrato__icontains=contrato
@@ -250,3 +250,17 @@ class AfiliacionReportePDFView(APIView):
         ] = 'inline; filename="reporte_afiliaciones.pdf"'
 
         return response
+
+class AfiliacionTitular(APIView):
+    def get(self, request, id_titular):
+        afiliaciones=Afiliacion.objects.filter(id_titular_id=id_titular).select_related("id_titular","id_asesor").order_by('-id')
+        paginador=Paginacion()
+        pagina = paginador.paginate_queryset(
+            afiliaciones,
+            request
+        )
+        serializer=AfiliacionSerializer(pagina, many=True)
+        return paginador.get_paginated_response(
+            serializer.data
+        )
+        

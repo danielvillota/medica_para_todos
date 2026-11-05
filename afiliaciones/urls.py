@@ -1,5 +1,5 @@
 from django.urls import path
-from afiliaciones.views import AfiliacionView, AfiliacionDetalleView, AfiliacionCarnetView, AfiliacionReporteView, AfiliacionReportePDFView
+from afiliaciones.views import AfiliacionView, AfiliacionDetalleView, AfiliacionCarnetView, AfiliacionReporteView, AfiliacionReportePDFView, AfiliacionTitular
 
 urlpatterns=[
     path('', AfiliacionView.as_view(), name='afiliacion-lista-creacion'),
@@ -7,4 +7,5 @@ urlpatterns=[
     path('<int:id>/carnet/', AfiliacionCarnetView.as_view(), name='afiliacion-carnet'),
     path('reporte/', AfiliacionReporteView.as_view(), name='afiliacion-reporte'),
     path('reporte/pdf/', AfiliacionReportePDFView.as_view(), name='afiliacion-reporte-pdf'),
+    path('titular/<int:id_titular>/', AfiliacionTitular.as_view(), name='afiliaciones-titular'),
 ]
