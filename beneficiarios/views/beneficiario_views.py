@@ -7,7 +7,7 @@ from paginacion.paginacion import Paginacion
 
 class BeneficiarioView(APIView):
     def post(self, request):
-        serializer=BeneficiarioSerializer(data=request.data)
+        serializer=BeneficiarioSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
             serializer.save()
             return Response({
@@ -57,7 +57,7 @@ class BeneficiarioDetalleView(APIView):
             },status=status.HTTP_404_NOT_FOUND)
         serializer=BeneficiarioSerializer(beneficiario, data=request.data, partial=True)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(id_usuario=request.user)
             return Response({
                 "message":"Beneficiario actualizado correctamente",
                 "data":serializer.data
